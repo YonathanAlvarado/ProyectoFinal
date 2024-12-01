@@ -1,0 +1,61 @@
+<div class="row">
+    <div class="col-12 mb-4">
+        <h1>Products</h1>
+        
+        <div class="row mb-3">
+            <div class="col">
+                <select class="form-select" id="sortSelect">
+                    <option value="">Sort by price...</option>
+                    <option value="asc">Price: Low to High</option>
+                    <option value="desc">Price: High to Low</option>
+                </select>
+            </div>
+            <div class="col">
+                <select class="form-select" id="categorySelect">
+                    <option value="">All Categories</option>
+                    {{#each categories}}
+                        <option value="{{this}}">{{this}}</option>
+                    {{/each}}
+                </select>
+            </div>
+        </div>
+    </div>
+
+    {{#each products}}
+    <div class="col-md-4 mb-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{this.title}}</h5>
+                <p class="card-text">Price: ${{this.price}}</p>
+                <p class="card-text">Category: {{this.category}}</p>
+                <a href="/products/{{this._id}}" class="btn btn-primary">View Details</a>
+                <button class="btn btn-success add-to-cart" data-product-id="{{this._id}}">
+                    Add to Cart
+                </button>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+
+    <div class="col-12">
+        <nav>
+            <ul class="pagination justify-content-center">
+                {{#if hasPrevPage}}
+                    <li class="page-item">
+                        <a class="page-link" href="{{prevLink}}">Previous</a>
+                    </li>
+                {{/if}}
+                
+                <li class="page-item active">
+                    <span class="page-link">{{page}}</span>
+                </li>
+                
+                {{#if hasNextPage}}
+                    <li class="page-item">
+                        <a class="page-link" href="{{nextLink}}">Next</a>
+                    </li>
+                {{/if}}
+            </ul>
+        </nav>
+    </div>
+</div>
